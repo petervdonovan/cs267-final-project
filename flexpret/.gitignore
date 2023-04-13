@@ -1,0 +1,6 @@
+*.dump
+*.mem
+*.mem.orig
+*.riscv
+*.map
+**/src-gen/

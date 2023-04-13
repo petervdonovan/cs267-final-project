@@ -1,0 +1,6 @@
+[mu []
+[[file {Reset_Handler} {
+  Reset_Handler:
+    [sim-print-int {42} {t0} {t1}]
+    [id die]}]]
+]

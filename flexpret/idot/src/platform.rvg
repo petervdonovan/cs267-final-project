@@ -1,0 +1,17 @@
+[mu [(program)]
+[def (sim-print) [lam [(r input!) (c0 clobber!)] {
+    li c0 0xbaaabaaa
+    csrw 0x51e c0
+    csrw 0x51e r
+}]]
+[def (sim-print-int) [lam [(k num!) (c0 clobber!) (c1 clobber!)] {
+    li c0 0xbaaabaaa
+    li c1 [id k]
+    csrw 0x51e c0
+    csrw 0x51e c1
+}]]
+[def (die) {
+    li t0 0xdeaddead
+    csrw 0x51e t0}]
+[def (csr-coreid) {0x510}]
+[program]]
