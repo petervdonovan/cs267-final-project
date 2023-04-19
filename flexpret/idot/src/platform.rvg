@@ -13,9 +13,14 @@
 [def (die) {
     li t0 0xdeaddead
     csrw 0x51e t0}]
-[def (csr-coreid) 0x510]
-[def (csr-hartid) 0x50b]
 [def (get-hartid [-> block!]) [lam [(r output!)] {
-    csrr r [id csr-hartid]
+    csrr r 0x50b
 }]]
+[def (get-coreid [-> block!]) [lam [(r output!)] {
+    csrr r 0x510
+}]]
+[def (n-harts num!) 8]
+[def (n-cores num!) 36]
+[def (critical-hart [-> block!]) [critical n-harts get-hartid]]
+[def (critical-cores [-> block!]) [critical n-cores get-coreid]]
 [program]]

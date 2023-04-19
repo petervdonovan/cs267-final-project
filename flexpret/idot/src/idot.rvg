@@ -4,7 +4,7 @@
   Reset_Handler:
     [get-hartid {t2}]
     li a0 3
-    [if+2 [== {a0} {t2}] [sim-print {t2} {t1}]]
+    [critical-hart {a1} [sim-print {t2} {t1}]]
     ANSWER:
     [sim-print-int 42 {t0} {t1}]
     [id die]}]]
