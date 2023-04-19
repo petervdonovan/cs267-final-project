@@ -6,6 +6,7 @@
     li a0 3
     [critical-hart {a1} [sim-print {t2} {t1}]]
     ANSWER:
-    [sim-print-int 42 {t0} {t1}]
+    [single {a1} [sim-print-int 42 {t0} {t1}]]
+    [critical-hart {a1} [single-core {a2} [sim-print {t2} {t1}]]]
     [id die]}]]
 ]

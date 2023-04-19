@@ -23,4 +23,9 @@
 [def (n-cores num!) 36]
 [def (critical-hart [-> block!]) [critical n-harts get-hartid]]
 [def (critical-cores [-> block!]) [critical n-cores get-coreid]]
+[def (single-hart [-> block!]) [single get-hartid]]
+[def (single-core [-> block!]) [single get-coreid]]
+[def (single [-> block!])
+  [lam [(clobber0 clobber!) (do-single block!)]
+  [single-hart clobber0 [single-core clobber0 do-single]]]]
 [program]]
