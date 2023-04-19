@@ -1,6 +1,11 @@
 [mu []
+[def (counting-array [-> block!]) [lam [(start-addr input!) (len input!)]]]
 [[file {Reset_Handler} {
   Reset_Handler:
-    [sim-print-int {42} {t0} {t1}]
+    [get-hartid {t2}]
+    li a0 3
+    [if+2 [== {a0} {t2}] [sim-print {t2} {t1}]]
+    ANSWER:
+    [sim-print-int 42 {t0} {t1}]
     [id die]}]]
 ]

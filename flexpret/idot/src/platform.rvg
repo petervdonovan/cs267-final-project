@@ -13,5 +13,9 @@
 [def (die) {
     li t0 0xdeaddead
     csrw 0x51e t0}]
-[def (csr-coreid) {0x510}]
+[def (csr-coreid) 0x510]
+[def (csr-hartid) 0x50b]
+[def (get-hartid [-> block!]) [lam [(r output!)] {
+    csrr r [id csr-hartid]
+}]]
 [program]]
