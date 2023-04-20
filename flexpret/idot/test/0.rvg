@@ -1,0 +1,9 @@
+[mu []
+[[file {Reset_Handler} {
+  Reset_Handler:
+    [get-coreid {t2}]
+    [critical-hart {a1} [sim-print {t2} {t1}]]
+    [single {a1} [sim-print-int 42 {t0} {t1}]]
+    [single-hart {a5} [critical-cores-mod8 {a0} [sim-print-int 12 {t0} {t1}]]]
+    [id die]}]]
+]
