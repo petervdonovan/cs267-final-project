@@ -642,6 +642,6 @@ Core-63 is done
 All cores are done terminating
 Assertion failed: Program terminated sucessfully
     at Top.scala:126 assert(false.B, "Program terminated sucessfully")
-[6062] %Error: Top.sim.v:1944776: Assertion failed in TOP.Top
+[6046] %Error: Top.sim.v:1944776: Assertion failed in TOP.Top
 %Error: Top.sim.v:1944776: Verilog $stop
 Aborting...
