@@ -32,4 +32,6 @@
   [single-hart clobber0 [single-core clobber0 do-single]]]]
 [def (critical-cores-mod8) [critical-cores-mask [lam [(core input! output!)] {andi core core 0b111}] -1]]
 [def (critical-cores-div8) [critical-cores-mask [lam [(core input! output!)] {srli core core 3}] -1]]
+[def (init block!) [init n-harts single-hart]]
+[def (reduce-shmem [-> block!]) [reduce-shmem n-harts get-hartid]]
 [program]]
