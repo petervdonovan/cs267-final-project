@@ -1,23 +1,23 @@
 [mu [(program)]
 [def (sim-print) [lam [(r input!) (c0 clobber!)] {
-    li c0 0xbaaabaaa
-    csrw 0x51e c0
-    csrw 0x51e r
+  li c0 0xbaaabaaa
+  csrw 0x51e c0
+  csrw 0x51e r
 }]]
 [def (sim-print-int) [lam [(k num!) (c0 clobber!) (c1 clobber!)] {
-    li c0 0xbaaabaaa
-    li c1 [id k]
-    csrw 0x51e c0
-    csrw 0x51e c1
+  li c0 0xbaaabaaa
+  li c1 [id k]
+  csrw 0x51e c0
+  csrw 0x51e c1
 }]]
 [def (die) {
-    li t0 0xdeaddead
-    csrw 0x51e t0}]
+  li t0 0xdeaddead
+  csrw 0x51e t0}]
 [def (get-hartid [-> block!]) [lam [(r output!)] {
-    csrr r 0x50b
+  csrr r 0x50b
 }]]
 [def (get-coreid [-> block!]) [lam [(r output!)] {
-    csrr r 0x510
+  csrr r 0x510
 }]]
 [def (n-harts num!) 8]
 [def (n-cores num!) 36]
@@ -34,4 +34,11 @@
 [def (critical-cores-div8) [critical-cores-mask [lam [(core input! output!)] {srli core core 3}] -1]]
 [def (init block!) [init n-harts single-hart]]
 [def (reduce-shmem [-> block!]) [reduce-shmem n-harts get-hartid]]
+[def (send-arr-distmem [-> block!])
+  [lam [(array-start input! clobber!) (len num!) (c0 clobber!) (c1 clobber!) (c2 clobber!)]
+    [using-noc c2 [mu [] {
+      [for c0 c1 0 len 1 {
+
+      }]
+    }]]]]
 [program]]
