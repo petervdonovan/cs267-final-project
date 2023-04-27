@@ -20,7 +20,7 @@
   csrr r 0x510
 }]]
 [def (n-harts num!) 8]
-[def (n-cores num!) 36]
+[def (n-cores num!) 16]
 [def (critical-hart [lamof reg! block!] [-> block!]) [critical n-harts get-hartid]]
 [def (critical-cores [lamof reg! block!] [-> block!]) [critical n-cores get-coreid]]
 [def (critical-harts-mask) [critical-mask n-harts get-hartid]]
@@ -41,4 +41,5 @@
 
       }]
     }]]]]
+[def (parfor) [parfor n-harts get-hartid]]
 [program]]
