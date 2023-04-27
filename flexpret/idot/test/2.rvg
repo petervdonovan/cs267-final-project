@@ -1,0 +1,27 @@
+[mu []
+[def (core) {t0}]
+[def (sender) {t1}]
+[def (receiver) {a1}]
+[def (noc-base) {t2}]
+[def (message) {t6}]
+[def (sender-int) 0]
+[def (receiver-int) 1]
+[[file {Reset_Handler} {
+  Reset_Handler:
+    [id init]
+    [get-coreid core]
+    li sender sender-int
+    li receiver receiver-int
+    li noc-base 0x40000100
+    li message 42
+    [single-hart {a0} {
+      [if+2 [== core sender] {
+        sw message [* 4 receiver-int] (noc-base)
+      }]
+      [delay 0]
+      [if+2 [== core receiver] {
+        lw t3 [* 4 sender-int] (noc-base)
+        [sim-print {t3} {t4}]
+      }]}]
+    [id die]}]]
+]

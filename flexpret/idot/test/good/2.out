@@ -1,0 +1,23 @@
+Core-1:         42
+Core-0 is done
+Core-1 is done
+Core-2 is done
+Core-3 is done
+Core-4 is done
+Core-5 is done
+Core-6 is done
+Core-7 is done
+Core-8 is done
+Core-9 is done
+Core-10 is done
+Core-11 is done
+Core-12 is done
+Core-13 is done
+Core-14 is done
+Core-15 is done
+All cores are done terminating
+Assertion failed: Program terminated sucessfully
+    at Top.scala:126 assert(false.B, "Program terminated sucessfully")
+[750] %Error: Top.sim.v:298028: Assertion failed in TOP.Top
+%Error: Top.sim.v:298028: Verilog $stop
+Aborting...
