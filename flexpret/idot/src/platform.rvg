@@ -51,12 +51,36 @@
   [critical [/ n-cores 8] [div8 get-coreid]]]
 [def (init block!) [init n-harts single-hart]]
 [def (reduce-shmem [-> block!]) [reduce-shmem n-harts get-hartid]]
-[def (send-arr-distmem [-> block!])
-  [lam [(array-start input! clobber!) (len num!) (c0 clobber!) (c1 clobber!) (c2 clobber!)]
-    [using-noc c2 [mu [] {
-      [for c0 c1 0 len 1 {
 
-      }]
-    }]]]]
+[;; { NoC-related functions. }]
+[def (noc-write)
+  [mu [(r input!) (dest-core num!)]
+  { sw r [id dest-core] (noc-base) }]]
+[def (noc-read)
+  [mu [(r output!) (src-core num!)]
+  { lw r [id src-core] (noc-base) }]]
+[def (noc-write-reg)
+  [mu [(r input!) (dest-core input!)]
+  {
+    add dest-core dest-core noc-base
+    sw r 0(dest-core)
+    sub dest-core dest-core noc-base
+  }]]
+[def (noc-read-reg)
+  [mu [(r output!) (src-core input!)]
+  {
+    add src-core src-core noc-base
+    lw r 0(src-core)
+    sub src-core src-core noc-base
+  }]]
+[def (using-noc) [lam [(noc-base input!) (moo [lam! 0])]
+  [def (noc-write) [noc-write noc-base]]
+  [def (noc-read ) [noc-read  noc-base]]
+  [def (noc-write-reg) [noc-write-reg noc-base]]
+  [def (noc-read-reg ) [noc-read-reg  noc-base]]
+  {
+    [load-noc-base-address noc-base]
+    [moo]
+  }]]
 [def (parfor) [parfor n-harts get-hartid]]
 [program]]
