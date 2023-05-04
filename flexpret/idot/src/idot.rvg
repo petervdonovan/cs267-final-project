@@ -9,45 +9,45 @@
     li A 0
     li B 0
     li C 0
-    [single-hart {a0} {
+    [single-hart a0 {
       [allocate N A]
       [allocate N B]
       [allocate N C]
-      [for {t0} {t1} 0 [* 4 N] 4 {
+      [for t0 t1 0 [* 4 N] 4 {
         add a1 A t0
         addi a2 t0 [/ N -8]
         sw a2 0(a1)
       }]
-      [for {t0} {t1} 0 [* 4 N] 4 {
+      [for t0 t1 0 [* 4 N] 4 {
         add a1 B t0
         li a2 [/ N 2]
         sw a2 0(a1)
       }]
     }]
-    [single-core {a2} {
-      [reduce-shmem +acc A 0 {a0} {a1}]
-      [reduce-shmem +acc B 0 {a0} {a1}]
-      [reduce-shmem +acc C 0 {a0} {a1}]
+    [single-core a2 {
+      [reduce-shmem +acc A 0 a0 a1]
+      [reduce-shmem +acc B 0 a0 a1]
+      [reduce-shmem +acc C 0 a0 a1]
     }]
-    [single-core {a0}
-      [parfor {t0} {t1} 0 [* 4 N] 4 {
+    [single-core a0
+      [parfor t0 t1 0 [* 4 N] 4 {
         add a1 A t0
         add a2 B t0
         add a3 C t0
         lw a1 0(a1)
         lw a2 0(a2)
-        [max {a4} {a1} {a2}]
+        [max a4 a1 a2]
         sw a4 0(a3)
       }]]
-    [single-core {a0}
-      [single-hart {a1}
-        [for {t0} {t1} 0 [* 4 N] 4
+    [single-core a0
+      [single-hart a1
+        [for t0 t1 0 [* 4 N] 4
         {
           add a3 C t0
           lw a2 0(a3)
-          [sim-print-int 42 {a4} {a5}]
-          [sim-print {a2} {a3}]
+          [sim-print-int 42 a4 a5]
+          [sim-print a2 a3]
         }]]]
-    [single-core {a0} [single-hart {a1} [sim-print-int 99 {a4} {a5}]]]
+    [single-core a0 [single-hart a1 [sim-print-int 99 a4 a5]]]
     [id die]}]]
 ]
