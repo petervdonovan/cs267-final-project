@@ -21,21 +21,21 @@
 }]]
 [def (n-harts num!) 8]
 [def (n-cores num!) 16]
-[def (critical-harts [lamof clobber! clobber! block!] [-> block!]) [critical n-harts get-hartid]]
-[def (critical-cores [lamof clobber! clobber! block!] [-> block!]) [critical n-cores get-coreid]]
-[def (critical-harts-mask) [critical-mask n-harts get-hartid]]
-[def (critical-cores-mask) [critical-mask n-cores get-coreid]]
-[def (forkjoin-harts)
+[def (critical-hart [lamof clobber! clobber! block!] [-> block!]) [critical n-harts get-hartid]]
+[def (critical-core [lamof clobber! clobber! block!] [-> block!]) [critical n-cores get-coreid]]
+[def (critical-hart-mask) [critical-mask n-harts get-hartid]]
+[def (critical-core-mask) [critical-mask n-cores get-coreid]]
+[def (forkjoin-hart)
   [forkjoin n-harts get-hartid]]
-[def (forkjoin-cores [lamof clobber! [-> block!]] [-> block!])
+[def (forkjoin-core [lamof clobber! [-> block!]] [-> block!])
   [forkjoin n-cores get-coreid]]
 [def (single-hart [-> block!]) [single get-hartid]]
 [def (single-core [-> block!]) [single get-coreid]]
 [def (single [-> block!])
   [lam [(clobber0 clobber!) (do-single block!)]
   [single-hart clobber0 [single-core clobber0 do-single]]]]
-[def (critical-cores-mod8) [critical-cores-mask [lam [(core input! output!)] {andi core core 0b111}] -1]]
-[def (critical-cores-div8) [critical-cores-mask [lam [(core input! output!)] {srli core core 3}] -1]]
+[def (critical-core-mod8) [critical-core-mask [lam [(core input! output!)] {andi core core 0b111}] -1]]
+[def (critical-core-div8) [critical-core-mask [lam [(core input! output!)] {srli core core 3}] -1]]
 [def (init block!) [init n-harts single-hart]]
 [def (reduce-shmem [-> block!]) [reduce-shmem n-harts get-hartid]]
 [def (send-arr-distmem [-> block!])

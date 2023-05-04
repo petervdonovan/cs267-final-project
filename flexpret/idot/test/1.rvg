@@ -4,6 +4,6 @@
     [id init]
     [get-hartid t0]
     [reduce-shmem +acc t0 0 a0 a1]
-    [critical-harts a0 a2 [sim-print t0 a1]]
+    [critical-hart a0 a2 [sim-print t0 a1]]
     [id die]}]]
 ]

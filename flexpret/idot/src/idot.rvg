@@ -1,7 +1,7 @@
 [mu []
 [def (print-hartid)
-  [forkjoin-harts t0 [lam [(n)]
-      [critical-harts t1 t4
+  [forkjoin-hart t0 [lam [(n)]
+      [critical-hart t1 t4
       {
         [sim-print-int n t2 t3]
       }]]]]
@@ -14,7 +14,7 @@
     [id print-hartid]
     rdcycle t6
     sub t5 t6 t5
-    [critical-harts t0 t2
+    [critical-hart t0 t2
       [sim-print t5 t1]]
     [id die]}]]
 ]
