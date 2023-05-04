@@ -36,7 +36,7 @@
         add a3 C t0
         lw a1 0(a1)
         lw a2 0(a2)
-        [max a4 a1 a2]
+        [max~ a4 a1 a2]
         sw a4 0(a3)
       }]]
     [single-core a0
