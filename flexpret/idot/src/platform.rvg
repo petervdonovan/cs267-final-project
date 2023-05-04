@@ -21,10 +21,14 @@
 }]]
 [def (n-harts num!) 8]
 [def (n-cores num!) 16]
-[def (critical-hart [lamof clobber! clobber! block!] [-> block!]) [critical n-harts get-hartid]]
+[def (critical-harts [lamof clobber! clobber! block!] [-> block!]) [critical n-harts get-hartid]]
 [def (critical-cores [lamof clobber! clobber! block!] [-> block!]) [critical n-cores get-coreid]]
 [def (critical-harts-mask) [critical-mask n-harts get-hartid]]
 [def (critical-cores-mask) [critical-mask n-cores get-coreid]]
+[def (forkjoin-harts [lamof clobber! [-> block!]] [-> block!])
+  [forkjoin n-harts get-hartid]]
+[def (forkjoin-cores [lamof clobber! [-> block!]] [-> block!])
+  [forkjoin n-cores get-coreid]]
 [def (single-hart [-> block!]) [single get-hartid]]
 [def (single-core [-> block!]) [single get-coreid]]
 [def (single [-> block!])
