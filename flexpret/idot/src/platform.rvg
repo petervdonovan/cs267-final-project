@@ -83,4 +83,5 @@
     [moo]
   }]]
 [def (parfor) [parfor n-harts get-hartid]]
+[def (pariterate-hart) [pariterate n-harts get-hartid]]
 [program]]
