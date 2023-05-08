@@ -55,10 +55,10 @@
 [;; { NoC-related functions. }]
 [def (noc-write)
   [mu [(r input!) (dest-core num!)]
-  { sw r [id dest-core] (noc-base) }]]
+  { sw r [* 4 dest-core] (noc-base) }]]
 [def (noc-read)
   [mu [(r output!) (src-core num!)]
-  { lw r [id src-core] (noc-base) }]]
+  { lw r [* 4 src-core] (noc-base) }]]
 [def (noc-write-reg)
   [mu [(r input!) (dest-core input!)]
   {
@@ -74,12 +74,8 @@
     sub src-core src-core noc-base
   }]]
 [def (using-noc) [lam [(noc-base input!) (moo [lam! 0])]
-  [def (noc-write) [noc-write noc-base]]
-  [def (noc-read ) [noc-read  noc-base]]
-  [def (noc-write-reg) [noc-write-reg noc-base]]
-  [def (noc-read-reg ) [noc-read-reg  noc-base]]
   {
-    [load-noc-base-address noc-base]
+    li noc-base 0x40000040
     [moo]
   }]]
 [def (parfor) [parfor n-harts get-hartid]]
