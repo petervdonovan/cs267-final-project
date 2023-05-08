@@ -13,12 +13,12 @@
       [allocate N A]
       [allocate N B]
       [allocate N C]
-      [for t0 t1 0 [* 4 N] 4 {
+      [for t0 t1 0 to [* 4 N] by 4 {
         add a1 A t0
         addi a2 t0 [/ N -8]
         sw a2 0(a1)
       }]
-      [for t0 t1 0 [* 4 N] 4 {
+      [for t0 t1 0 to [* 4 N] by 4 {
         add a1 B t0
         li a2 [/ N 2]
         sw a2 0(a1)
@@ -30,7 +30,7 @@
       [reduce-shmem +acc C 0 a0 a1]
     }]
     [single-core a0
-      [parfor t0 t1 0 [* 4 N] 4 {
+      [parfor t0 t1 0 to [* 4 N] by 4 {
         add a1 A t0
         add a2 B t0
         add a3 C t0
@@ -41,7 +41,7 @@
       }]]
     [single-core a0
       [single-hart a1
-        [for t0 t1 0 [* 4 N] 4
+        [for t0 t1 0 to [* 4 N] by 4
         {
           add a3 C t0
           lw a2 0(a3)

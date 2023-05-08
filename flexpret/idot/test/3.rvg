@@ -4,7 +4,7 @@
     [id init]
     [get-hartid a0]
     [single-core a1
-      [parfor t0 t1 11 75 1
+      [parfor t0 t1 11 to 75 by 1
         [critical-hart t3 t4
           [sim-print t0 t2]]]]
     [id die]}]]

@@ -7,7 +7,7 @@
     [single t5
     {
       [allocate 32 Areg]
-      [for t1 t2 0 [* 4 32] 4
+      [for t1 t2 0 to [* 4 32] by 4
         {
           add t3 t1 Areg
           srli t4 t1 2
