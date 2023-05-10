@@ -15,7 +15,7 @@
   }]]]
 [def (do-send)
   {
-    [def (others) [memregion t0 t1 noc-base-address words 2 to 16]]
+    [def (others) [memregion t0 t1 noc-base-address words 2 to 16 by 1]]
     [def (scattering) [cyclify a0 a1 others times 5]]
     [def (zipped) [zip
       t4 of [rng-seeded t2 t3 bits 5 length 16 seeded 7]

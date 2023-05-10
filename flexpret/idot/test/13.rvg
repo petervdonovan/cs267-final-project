@@ -4,7 +4,7 @@
     [id init]
     [[single-else get-coreid] t5
       {
-        [iterate {address} of [memregion t0 t1 noc-base-address words 2 to 16]
+        [iterate {address} of [memregion t0 t1 noc-base-address words 2 to 16 by 1]
           {
             li t2 42
             sw t2 [id address]
