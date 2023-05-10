@@ -1,4 +1,19 @@
 [mu []
+
+[def (do-receive)
+  [using-noc a3 [mu []
+  {
+    [single-hart t1
+      {
+        [delay a4 60]
+        [iterate-at-rate t2 of [.. t4 0 to 5] doing 1 per 38 cycles
+          {
+            [noc-read t0 0]
+            [sim-print t0 t3]
+          }]
+      }]
+  }]]]
+
 [[file {Reset_Handler} {
   Reset_Handler:
     [id init]
@@ -8,31 +23,17 @@
           {
             [def (others) [memregion t0 t1 noc-base-address words 2 to 16]]
             [def (scattering) [cyclify a0 a1 others times 5]]
-            [[nonzero-team pariterate-at-rate] {address} of scattering doing 2 per 19 cycles
+            [def (zipped) [zip
+              t4 of [rng-seeded t2 t3 bits 5 length 16 seeded 7]
+              and t6 of scattering]]
+            [[nonzero-team pariterate-at-rate] {rand,addr} of zipped doing 2 per 38 cycles
               {
-                rdcycle t3
-                sw t3 [id address]
+                sw [fst rand,addr] [snd rand,addr]
               }]
           }]
       }
       {
-        [using-noc a3 [mu []
-          {
-            [single-hart t1
-              {
-                [delay a4 32]
-                [iterate-at-rate t2 of [.. t4 0 to 5] doing 1 per 19 cycles
-                  {
-                    [noc-read t0 0]
-                    [sim-print t0 t3]
-                  }]
-              }]
-          }]]
-      }]
-    [single-hart t0
-      {
-        rdcycle t3
-        [sim-print t3 t4]
+        [id do-receive]
       }]
     [id die]
   }]]
