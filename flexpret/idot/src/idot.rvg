@@ -4,20 +4,28 @@
     [id init]
     [[single-else get-coreid] t5
       {
-        [iterate {address} of [memregion t0 t1 noc-base-address words 2 to 16]
+        [single-hart t5
           {
-            li t2 42
-            sw t2 [id address]
+            [def (others) [memregion t0 t1 noc-base-address words 2 to 5]]
+            [def (scattering) [cyclify a0 a1 others times 5]]
+            [iterate-at-rate {address} of scattering doing 3 per 19 cycles
+              {
+                rdcycle t2
+                sw t2 [id address]
+              }]
           }]
       }
       {
         [using-noc a3 [mu []
           {
             [delay a4 32]
-            [single-hart t1
+            [iterate-at-rate t2 of [.. t4 0 to 5] doing 1 per 19 cycles
               {
-                [noc-read t0 0]
-                [sim-print t0 t3]
+                [single-hart t1
+                  {
+                    [noc-read t0 0]
+                    [sim-print t0 t3]
+                  }]
               }]
           }]]
       }]
