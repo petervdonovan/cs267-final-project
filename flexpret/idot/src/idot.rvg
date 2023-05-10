@@ -6,31 +6,32 @@
     [single-hart t1
       {
         [delay a4 60]
-        [iterate-at-rate t2 of [.. t4 0 to 5] doing 1 per 38 cycles
+        [iterate-at-rate t2 of [.. t4 0 to 5] doing 1 per 26 cycles
           {
             [noc-read t0 0]
             [sim-print t0 t3]
           }]
       }]
   }]]]
-
+[def (do-send)
+  {
+    [def (others) [memregion t0 t1 noc-base-address words 2 to 16]]
+    [def (scattering) [cyclify a0 a1 others times 5]]
+    [def (zipped) [zip
+      t4 of [rng-seeded t2 t3 bits 5 length 16 seeded 7]
+      and t6 of scattering]]
+    [[nonzero-team pariterate-at-rate] {rand,addr} of zipped doing 2 per 26 cycles
+      {
+        sw [fst rand,addr] [snd rand,addr]
+      }]
+  }]
 [[file {Reset_Handler} {
   Reset_Handler:
     [id init]
     [[single-else get-coreid] a3
       {
         [[single-else get-hartid] t5 {}
-          {
-            [def (others) [memregion t0 t1 noc-base-address words 2 to 16]]
-            [def (scattering) [cyclify a0 a1 others times 5]]
-            [def (zipped) [zip
-              t4 of [rng-seeded t2 t3 bits 5 length 16 seeded 7]
-              and t6 of scattering]]
-            [[nonzero-team pariterate-at-rate] {rand,addr} of zipped doing 2 per 38 cycles
-              {
-                sw [fst rand,addr] [snd rand,addr]
-              }]
-          }]
+          [id do-send]]
       }
       {
         [id do-receive]
