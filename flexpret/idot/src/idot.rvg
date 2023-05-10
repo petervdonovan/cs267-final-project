@@ -2,19 +2,19 @@
 [[file {Reset_Handler} {
   Reset_Handler:
     [id init]
-    [[single-else get-coreid] t5
+    [[single-else get-coreid] s1
       {
-        [single-hart t5
+        [[single-else get-hartid] t5 {}
           {
-            [def (others) [memregion t0 t1 noc-base-address words 2 to 5]]
+            [def (others) [memregion t0 t1 noc-base-address words 2 to 16]]
             [def (scattering) [cyclify a0 a1 others times 5]]
-            [iterate-at-rate {address} of scattering doing 3 per 19 cycles
+            [[nonzero-team pariterate-at-rate] {address} of scattering doing 2 per 19 cycles
               {
-                rdcycle t2
-                sw t2 [id address]
+                rdcycle t3
+                sw t3 [id address]
               }]
           }]
-      }
+        }
       {
         [using-noc a3 [mu []
           {
