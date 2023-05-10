@@ -73,9 +73,10 @@
     lw r 0(src-core)
     sub src-core src-core noc-base
   }]]
+[def (noc-base-address) 0x40000040]
 [def (using-noc) [lam [(noc-base input!) (moo [lam! 0])]
   {
-    li noc-base 0x40000040
+    li noc-base noc-base-address
     [moo]
   }]]
 [def (parfor) [parfor n-harts get-hartid]]
