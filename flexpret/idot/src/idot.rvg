@@ -6,7 +6,7 @@
     [single-hart t1
       {
         [delay a4 60]
-        [iterate-at-rate t2 of [.. t4 0 to 5] doing 1 per 26 cycles
+        [iterate-at-rate t2 of [.. t4 0 to 5] doing 2 per 42 cycles
           {
             [noc-read t0 0]
             [sim-print t0 t3]
@@ -20,7 +20,7 @@
     [def (zipped) [zip
       t4 of [rng-seeded t2 t3 bits 5 length 16 seeded 7]
       and t6 of scattering]]
-    [[nonzero-team pariterate-at-rate] {rand,addr} of zipped doing 2 per 26 cycles
+    [[nonzero-team pariterate-at-rate] {rand,addr} of zipped doing 4 per 42 cycles
       {
         sw [fst rand,addr] [snd rand,addr]
       }]
