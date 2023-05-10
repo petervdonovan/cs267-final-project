@@ -4,7 +4,8 @@
     [id init]
     [single t5
       {
-        [iterate {n,rand} of [zip t0 of [.. t3 3 to 9] and t1 of [rng-seeded t4 t5 bits 6 length 6 seeded 2]]
+        [def (rng) [rng-seeded t4 t5 bits 6 length 6 seeded 2]]
+        [iterate {n,rand} of [zip t0 of [.. t3 3 to 9] and t1 of rng]
           {
             [sim-print [fst n,rand] t4]
             [sim-print [snd n,rand] t4]

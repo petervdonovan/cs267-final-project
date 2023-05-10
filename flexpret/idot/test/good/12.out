@@ -1,0 +1,30 @@
+Core-0:          3
+Core-0:          6
+Core-0:          4
+Core-0:         26
+Core-0:          5
+Core-0:         35
+Core-0:          6
+Core-0:         62
+Core-0:          7
+Core-0:         32
+Core-0:          8
+Core-0:          1
+Core-0 is done
+Core-1 is done
+Core-2 is done
+Core-3 is done
+Core-4 is done
+Core-5 is done
+Core-6 is done
+Core-7 is done
+Core-8 is done
+Core-9 is done
+Core-10 is done
+Core-11 is done
+Core-12 is done
+Core-13 is done
+Core-14 is done
+Core-15 is done
+All cores are done terminating
+Assertion failed: Program terminated sucessfully
