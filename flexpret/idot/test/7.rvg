@@ -13,12 +13,12 @@
           srli t4 t1 2
           sw t4 0(t3)
         }]
-      [iterate {addr} of [A t2 t3]
+      [iterate {addr} of [map [A t2 t3] mapaddr]
         {
           lw t1 [id addr]
           [sim-print t1 t4]
         }]
-      [iterate {t1} of [map mapload [A t2 t3]]
+      [iterate {t1} of [map [A t2 t3] mapload]
         {
           [sim-print t1 t4]
         }]
