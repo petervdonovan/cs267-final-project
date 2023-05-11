@@ -19,8 +19,7 @@
         [iterate {addr} of [map [row t1 t2] mapaddr]
         {
           lw a3 [id addr]
-          [sim-print a0 t4]
-          [sim-print a1 t4]
+          [sim-print a3 t4]
         }]
       }]
     }]
