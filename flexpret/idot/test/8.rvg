@@ -1,6 +1,4 @@
 [mu []
-[def (Areg) t0]
-[def (A) [array-new Areg of length 32]]
 [[file {Reset_Handler} {
   Reset_Handler:
     [id init]

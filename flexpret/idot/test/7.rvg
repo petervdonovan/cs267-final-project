@@ -13,8 +13,9 @@
           srli t4 t1 2
           sw t4 0(t3)
         }]
-      [iterate t1 of [A t2 t3]
+      [iterate {addr} of [A t2 t3]
         {
+          lw t1 [id addr]
           [sim-print t1 t4]
         }]
     }]
