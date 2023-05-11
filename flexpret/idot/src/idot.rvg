@@ -18,6 +18,10 @@
           lw t1 [id addr]
           [sim-print t1 t4]
         }]
+      [iterate {t1} of [map mapload [A t2 t3]]
+        {
+          [sim-print t1 t4]
+        }]
     }]
     [id die]}]]
 ]
